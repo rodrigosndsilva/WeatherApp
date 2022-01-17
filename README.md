@@ -1,5 +1,6 @@
 TODO:
 
+- [ ] Login e registo na firebase (tanto pela conta google como personalizada com email e password)
 - [ ] api
 - [ ] Internacionalização
 - [ ] Localização atual
