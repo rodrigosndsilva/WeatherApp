@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">167255628388-l47ghv64dcg91139q6d2e8rsk0nsvhc1.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">167255628388</string>
+    <string name="google_api_key" translatable="false">AIzaSyBdhK3l9ScyRvO5Y8gW7Qk1u1ciMqKyIM4</string>
+    <string name="google_app_id" translatable="false">1:167255628388:android:66b4b865b9e9c39d461d71</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBdhK3l9ScyRvO5Y8gW7Qk1u1ciMqKyIM4</string>
+    <string name="google_storage_bucket" translatable="false">weatherapp-7192c.appspot.com</string>
+    <string name="project_id" translatable="false">weatherapp-7192c</string>
+</resources>

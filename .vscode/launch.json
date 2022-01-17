@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "weatherapp",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "tele",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}

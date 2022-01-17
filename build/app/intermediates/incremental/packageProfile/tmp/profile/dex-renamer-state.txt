@@ -1,0 +1,4 @@
+#Thu Jan 06 18:10:06 GMT 2022
+base.0=D\:\\Universidade\\AM\\Trabalho\\weatherapp\\build\\app\\intermediates\\dex\\profile\\mergeDexProfile\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
