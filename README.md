@@ -4,5 +4,5 @@ TODO:
 - [ ] api
 - [ ] Internacionalização
 - [ ] Localização atual
-- [ ] Animações
+- [ ] Animações (animations com durations)
 - [ ] mudar o splashscreen. Dar tempo para ver o logotipo (na pasta android/drawable) nativamente
