@@ -6560,9 +6560,9 @@ androidx.viewpager.widget.ViewPager$ViewPositionComparator
 com.google.android.gms.base.R
 com.google.android.gms.safetynet.SafetyNetApi$zzc
 androidx.customview.widget.ExploreByTouchHelper
-io.flutter.embedding.engine.systemchannels.PlatformViewsChannel:
-    private static final java.lang.String TAG
 io.flutter.embedding.engine.systemchannels.PlatformChannel:
+    private static final java.lang.String TAG
+io.flutter.embedding.engine.systemchannels.PlatformViewsChannel:
     private static final java.lang.String TAG
 androidx.core.animation.AnimatorKt$addListener$4
 com.google.common.collect.Multisets$FilteredMultiset$1
@@ -10178,5 +10178,5 @@ kotlin.KotlinVersion:
     public static final kotlin.KotlinVersion$Companion Companion
 com.google.android.gms.measurement.internal.zzec:
     private java.lang.String zze
-io.flutter.plugin.common.BinaryMessenger$-CC
 io.flutter.plugin.platform.PlatformView$-CC
+io.flutter.plugin.common.BinaryMessenger$-CC
