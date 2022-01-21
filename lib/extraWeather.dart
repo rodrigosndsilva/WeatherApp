@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherapp/defaultdata.dart';
+import 'package:weatherapp/setDataFromAPI.dart';
+//import 'package:weatherapp/defaultdata.dart';
 
 const mockupHeight = 812;
 
 class ExtraWeather extends StatelessWidget {
   final Weather temp;
+  // ignore: use_key_in_widget_constructors
   const ExtraWeather(this.temp);
 
   @override

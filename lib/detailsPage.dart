@@ -1,68 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:weatherapp/setDataFromAPI.dart';
+import 'package:weatherapp/extraWeather.dart';
 
-import 'defaultdata.dart';
-import 'extraWeather.dart';
-
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({Key? key}) : super(key: key);
-
+class DetailPage extends StatelessWidget {
+  final Weather tomorrowTemp;
+  final List<Weather> sevenDay;
+  DetailPage(this.tomorrowTemp, this.sevenDay);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff030317),
-      body: Column(children: const [
-        TommorowWeather(),
-        SevenDays(),
-      ]),
+      body: Column(
+        children: [TomorrowWeather(tomorrowTemp), SevenDays(sevenDay)],
+      ),
     );
   }
 }
 
-class TommorowWeather extends StatelessWidget {
-  const TommorowWeather({Key? key}) : super(key: key);
-
+class TomorrowWeather extends StatelessWidget {
+  final Weather tomorrowTemp;
+  TomorrowWeather(this.tomorrowTemp);
   @override
   Widget build(BuildContext context) {
     return GlowContainer(
       color: const Color(0xff00A1FF),
       glowColor: const Color(0xff00A1FF),
       borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
+          bottomLeft: const Radius.circular(60),
+          bottomRight: const Radius.circular(60)),
       child: Column(
         children: [
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 45, right: 0, left: 25, bottom: 25),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            " Back",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 45, left: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 50, right: 30, left: 30, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    )),
+                Row(
                   children: const [
                     Icon(
                       Icons.calendar_today,
@@ -71,22 +54,22 @@ class TommorowWeather extends StatelessWidget {
                     Text(
                       " 7 days",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
-              ),
-            ],
+                const Icon(Icons.login_rounded, color: Colors.white)
+              ],
+            ),
           ),
           Padding(
-            padding:
-                const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+            padding: const EdgeInsets.all(8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width / 2.5,
-                  height: MediaQuery.of(context).size.width / 2.5,
+                  width: MediaQuery.of(context).size.width / 2.3,
+                  height: MediaQuery.of(context).size.width / 2.3,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(tomorrowTemp.image))),
@@ -97,9 +80,9 @@ class TommorowWeather extends StatelessWidget {
                   children: [
                     const Text(
                       "Tomorrow",
-                      style: TextStyle(fontSize: 25, height: 0.1),
+                      style: TextStyle(fontSize: 30, height: 0.1),
                     ),
-                    SizedBox(
+                    Container(
                       height: 105,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -120,20 +103,14 @@ class TommorowWeather extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 10,
                     ),
                     Text(
                       " " + tomorrowTemp.name,
                       style: const TextStyle(
                         fontSize: 15,
                       ),
-                    ),
-                    Text(
-                      " " + tomorrowTemp.day,
-                      style: const TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
+                    )
                   ],
                 )
               ],
@@ -147,10 +124,7 @@ class TommorowWeather extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Divider(
-                  color: Colors.white,
-                  height: 10,
-                ),
+                const Divider(color: Colors.white),
                 const SizedBox(
                   height: 10,
                 ),
@@ -165,8 +139,8 @@ class TommorowWeather extends StatelessWidget {
 }
 
 class SevenDays extends StatelessWidget {
-  const SevenDays({Key? key}) : super(key: key);
-
+  final List<Weather> sevenDay;
+  SevenDays(this.sevenDay);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -174,13 +148,14 @@ class SevenDays extends StatelessWidget {
           itemCount: sevenDay.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                padding: const EdgeInsets.only(
+                    top: 25, left: 20, right: 20, bottom: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(sevenDay[index].day,
                         style: const TextStyle(fontSize: 20)),
-                    SizedBox(
+                    Container(
                       width: 135,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -211,7 +186,6 @@ class SevenDays extends StatelessWidget {
                           style:
                               const TextStyle(fontSize: 20, color: Colors.grey),
                         ),
-                        const Divider(color: Colors.white),
                       ],
                     )
                   ],

@@ -6,6 +6,8 @@ import 'home_page.dart';
 import 'login_page.dart';
 
 class WidgetTree extends StatelessWidget {
+  const WidgetTree({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
