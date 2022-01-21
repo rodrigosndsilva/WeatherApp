@@ -10178,5 +10178,5 @@ kotlin.KotlinVersion:
     public static final kotlin.KotlinVersion$Companion Companion
 com.google.android.gms.measurement.internal.zzec:
     private java.lang.String zze
-io.flutter.plugin.platform.PlatformView$-CC
 io.flutter.plugin.common.BinaryMessenger$-CC
+io.flutter.plugin.platform.PlatformView$-CC
