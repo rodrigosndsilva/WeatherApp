@@ -5,18 +5,18 @@ import 'package:flutter_glow/flutter_glow.dart';
 import 'package:weatherapp/detailsPage.dart';
 import 'package:weatherapp/setDataFromAPI.dart';
 
-import 'LogIn/accountPage.dart';
+//import 'LogIn/accountPage.dart';
 import 'extraWeather.dart';
 
 const mockupHeight = 812;
 
-late Weather currentTemp;
+Weather? currentTemp;
 late Weather tomorrowTemp;
 late List<Weather> todayWeather;
 late List<Weather> sevenDay;
 
 String lat = "40.203316";
-String lon = "-8.410257";
+String lon = "-8.410257 ";
 String city = "Coimbra";
 
 class HomePage extends StatefulWidget {
@@ -130,6 +130,25 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                               });
                           searchBar = false;
                           return;
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: const Color(0xff030317),
+                                  title:
+                                      Text("Temperature founded: " + temp.name),
+                                  content: Text(
+                                      "Lat: " + temp.lat + " Lon: " + temp.lat),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Ok"))
+                                  ],
+                                );
+                              });
                         }
                         city = temp.name;
                         lat = temp.lat;
@@ -139,7 +158,9 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                         widget.updateData();
                         searchBar = false;
                         updating = false;
-                        setState(() {});
+                        Future.delayed(const Duration(milliseconds: 10000), () {
+                          setState(() {});
+                        });
                       },
                     )
                   : Row(
@@ -171,7 +192,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                   borderRadius: BorderRadius.circular(30)),
               child: Center(
                 child: Text(
-                  "Updating",
+                  updating ? "Updating" : "Updated",
                   textScaleFactor: textScale,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -186,7 +207,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                       right: 0,
                       left: 0,
                       child: Image(
-                        image: AssetImage(currentTemp.image),
+                        image: AssetImage(currentTemp!.image),
                         height: MediaQuery.of(context).size.height - 430,
                         width: MediaQuery.of(context).size.height - 430,
                         fit: BoxFit.fitHeight,
@@ -199,18 +220,18 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                       child: Column(
                         children: [
                           GlowText(
-                            currentTemp.current.toString(),
+                            currentTemp!.current.toString(),
                             style: TextStyle(
                                 height: textScale,
                                 fontSize: 70,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(currentTemp.name,
+                          Text(currentTemp!.name,
                               textScaleFactor: textScale,
                               style: const TextStyle(
                                 fontSize: 15,
                               )),
-                          Text(currentTemp.day,
+                          Text(currentTemp!.day,
                               textScaleFactor: textScale,
                               style: const TextStyle(
                                 fontSize: 13,
@@ -224,7 +245,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                           const SizedBox(
                             height: 10,
                           ),
-                          ExtraWeather(currentTemp)
+                          ExtraWeather(currentTemp!)
                         ],
                       ),
                     ),

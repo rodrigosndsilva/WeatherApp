@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:weatherapp/moreDetailsPage.dart';
 import 'package:weatherapp/setDataFromAPI.dart';
 import 'package:weatherapp/extraWeather.dart';
 
 class DetailPage extends StatelessWidget {
   final Weather tomorrowTemp;
   final List<Weather> sevenDay;
-  DetailPage(this.tomorrowTemp, this.sevenDay);
+  const DetailPage(this.tomorrowTemp, this.sevenDay);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +21,7 @@ class DetailPage extends StatelessWidget {
 
 class TomorrowWeather extends StatelessWidget {
   final Weather tomorrowTemp;
-  TomorrowWeather(this.tomorrowTemp);
+  const TomorrowWeather(this.tomorrowTemp);
   @override
   Widget build(BuildContext context) {
     return GlowContainer(
@@ -140,56 +141,65 @@ class TomorrowWeather extends StatelessWidget {
 
 class SevenDays extends StatelessWidget {
   final List<Weather> sevenDay;
-  SevenDays(this.sevenDay);
+  const SevenDays(this.sevenDay);
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
           itemCount: sevenDay.length,
           itemBuilder: (BuildContext context, int index) {
-            return Padding(
-                padding: const EdgeInsets.only(
-                    top: 25, left: 20, right: 20, bottom: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(sevenDay[index].day,
-                        style: const TextStyle(fontSize: 20)),
-                    Container(
-                      width: 135,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image(
-                            image: AssetImage(sevenDay[index].image),
-                            width: 40,
-                          ),
-                          const SizedBox(width: 15),
-                          Text(
-                            sevenDay[index].name,
-                            style: const TextStyle(fontSize: 20),
-                          )
-                        ],
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  Weather selectedDay = sevenDay[index];
+                  return moreDetailPage(selectedDay, sevenDay);
+                }));
+              },
+              child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 25, left: 20, right: 20, bottom: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(sevenDay[index].day,
+                          style: const TextStyle(fontSize: 20)),
+                      SizedBox(
+                        width: 135,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image(
+                              image: AssetImage(sevenDay[index].image),
+                              width: 40,
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              sevenDay[index].name,
+                              style: const TextStyle(fontSize: 20),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "+" + sevenDay[index].max.toString() + "\u00B0",
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "+" + sevenDay[index].min.toString() + "\u00B0",
-                          style:
-                              const TextStyle(fontSize: 20, color: Colors.grey),
-                        ),
-                      ],
-                    )
-                  ],
-                ));
+                      Row(
+                        children: [
+                          Text(
+                            "+" + sevenDay[index].max.toString() + "\u00B0",
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "+" + sevenDay[index].min.toString() + "\u00B0",
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.grey),
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+            );
           }),
     );
   }

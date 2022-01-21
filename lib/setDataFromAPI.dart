@@ -65,15 +65,26 @@ Future<List> fetchData(String lat, String lon, String city) async {
     }
 
     //Tomorrow Weather
-    var daily = res["daily"][0];
+    var daily1 = res["daily"][0];
     Weather tomorrowTemp = Weather(
-        max: daily["temp"]["max"]?.round() ?? 0,
-        min: daily["temp"]["min"]?.round() ?? 0,
-        image: findIcon(daily["weather"][0]["main"].toString(), true),
-        name: daily["weather"][0]["main"].toString(),
-        wind: daily["wind_speed"]?.round() ?? 0,
-        humidity: daily["rain"]?.round() ?? 0,
-        chanceRain: daily["uvi"]?.round() ?? 0);
+        max: daily1["temp"]["max"]?.round() ?? 0,
+        min: daily1["temp"]["min"]?.round() ?? 0,
+        image: findIcon(daily1["weather"][0]["main"].toString(), true),
+        name: daily1["weather"][0]["main"].toString(),
+        wind: daily1["wind_speed"]?.round() ?? 0,
+        humidity: daily1["rain"]?.round() ?? 0,
+        chanceRain: daily1["uvi"]?.round() ?? 0);
+
+    //Tomorrow Weather
+    var daily2 = res["daily"][1];
+    Weather tomorrowTemp2 = Weather(
+        max: daily2["temp"]["max"]?.round() ?? 0,
+        min: daily2["temp"]["min"]?.round() ?? 0,
+        image: findIcon(daily2["weather"][0]["main"].toString(), true),
+        name: daily2["weather"][0]["main"].toString(),
+        wind: daily2["wind_speed"]?.round() ?? 0,
+        humidity: daily2["rain"]?.round() ?? 0,
+        chanceRain: daily2["uvi"]?.round() ?? 0);
 
     //Seven Day Weather
     List<Weather> sevenDay = [];
