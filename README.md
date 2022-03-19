@@ -1,8 +1,1 @@
-- [x] api
-- [x] Detalhes de cada dia
-- [x] 8 dias de meteorologia
-- [ ] Internacionalização - Já estão instaladas as dependencias e a pasta intl. Testar apenas se dá para adicionar com o atalho numa string qql
-- [ ] Localização atual
-- [ ] Adicionar algumas Animações
-- [ ] Animações (animations com durations)
-- [ ] mudar o splashscreen. Dar tempo para ver o logotipo (na pasta android/drawable) nativamente
+
